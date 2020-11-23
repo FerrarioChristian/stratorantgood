@@ -1,0 +1,18 @@
+<div class="agents-container">
+  <div class="defense-side">
+    <p class="side-name">Defense</p>
+    <app-agent-component
+      *ngFor="let agent of agentListDefend; index as i"
+      [index]="i"
+    ></app-agent-component>
+  </div>
+
+  <div class="offense-side">
+    <p class="side-name">Offense</p>
+    <app-agent-component
+      *ngFor="let agent of agentListOffense; index as i"
+      [isOffense]="true"
+      [index]="i"
+    ></app-agent-component>
+  </div>
+</div>

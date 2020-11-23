@@ -1,0 +1,74 @@
+@import "../main.styles.scss";
+
+.agent-thumbnail {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 2px;
+    width: 30px;
+    border-radius: 50%;
+    margin: 10px;
+    pointer-events: auto;
+
+  img {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: auto;
+    background: rgb(19, 28, 46);
+    border-radius: 50%;
+    border: 2px solid rgb(32, 43, 67);
+    pointer-events: none;
+  }
+
+  &--breach {
+    background: $breach-color;
+  }
+
+  &--brimstone {
+    background: $brimstone-color;
+  }
+
+  &--cypher {
+    background: $cypher-color;
+  }
+
+  &--jett {
+    background: $jett-color;
+  }
+
+  &--killjoy {
+    background: $killjoy-color;
+  }
+
+  &--omen {
+    background: $omen-color;
+  }
+
+  &--phoenix {
+    background: $phoenix-color;
+  }
+
+  &--raze {
+    background: $raze-color;
+  }
+
+  &--reyna {
+    background: $reyna-color;
+  }
+
+  &--sage {
+    background: $sage-color;
+  }
+
+  &--skye {
+    background: $skye-color;
+  }
+
+  &--sova {
+    background: $sova-color;
+  }
+
+  &--viper {
+    background: $viper-color;
+  }
+}

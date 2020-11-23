@@ -1,0 +1,18 @@
+.navigation {
+  height: 50px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+
+  ul {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    vertical-align: middle;
+  }
+}

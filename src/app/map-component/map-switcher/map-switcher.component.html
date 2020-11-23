@@ -1,0 +1,5 @@
+<select [ngModel]="selectedMap" (change)="onMapChange($event.target.value)">
+  <option *ngFor="let mapName of mapList" value="{{ mapName }}">
+    {{ mapName }}
+  </option>
+</select>

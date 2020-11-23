@@ -1,0 +1,7 @@
+<div
+  class="agent-thumbnail agent-thumbnail--{{ this.agent.name }}"
+  (mousedown)="dragStart($event)"
+  style="top: {{ startingPositionOffsetY }}px;"
+>
+  <img src="../../assets/images/{{ this.agent.name }}.png" />
+</div>

@@ -1,0 +1,13 @@
+.agents-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  pointer-events: none;
+  position: relative;
+}
+
+.side-name {
+  color: white;
+  font-size: 14px;
+
+}
