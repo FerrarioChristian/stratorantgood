@@ -1,13 +1,13 @@
 @import "../main.styles.scss";
 
 .agent-thumbnail {
-    position: absolute;
-    box-sizing: border-box;
-    padding: 2px;
-    width: 30px;
-    border-radius: 50%;
-    margin: 10px;
-    pointer-events: auto;
+  position: absolute;
+  box-sizing: border-box;
+  padding: 2px;
+  width: 30px;
+  border-radius: 50%;
+  margin: 10px;
+  pointer-events: auto;
 
   img {
     box-sizing: border-box;
@@ -18,6 +18,10 @@
     border-radius: 50%;
     border: 2px solid rgb(32, 43, 67);
     pointer-events: none;
+  }
+
+  &--offense {
+    box-shadow: red 0px 0px 10px;
   }
 
   &--breach {

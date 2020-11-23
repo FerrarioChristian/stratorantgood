@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Coordinates } from '../settings/settings.model';
 import actions from './actions';
+import settingsActions from '../settings/actions';
 import { AgentSetting } from './agent.model';
 import agentsList from './agentsList';
 
@@ -11,24 +13,15 @@ export class AgentService {
   
   loadAgents() {
     this.store.dispatch(actions.loadAgents(agentsList));
-  } 
+  }
 
-  resetAgents() {
-    let newDTO: AgentSetting[] = [];
-    let counter = 0;
-    for (let i = 0; i < agentsList.length * 2; i++) {
-      newDTO = [
-        ...newDTO,
-        {
-          name: agentsList[counter].name,
-          isOffense: i >= agentsList.length,
-          positionReset: true,
-          offsetX: 0,
-          offsetY: 0
-        }]
-      counter < agentsList.length - 1 ? counter++ : counter = 0;
+  setAgentPosition(agent: AgentSetting, coordinates: Coordinates) {
+    const newAgent: AgentSetting = {
+      ...agent,
+      offsetX: coordinates.X,
+      offsetY: coordinates.Y
     }
-    this.store.dispatch(actions.resetAgents(newDTO));
+    this.store.dispatch(settingsActions.setAgentPosition(newAgent));
   }
 
 }

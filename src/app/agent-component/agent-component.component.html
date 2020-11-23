@@ -1,7 +1,7 @@
 <div
-  class="agent-thumbnail agent-thumbnail--{{ this.agent.name }}"
+  class="agent-thumbnail agent-thumbnail--{{ this.agent.name }} agent-thumbnail--{{this.isOffense ? 'offense' : ''}}"
   (mousedown)="dragStart($event)"
-  style="top: {{ startingPositionOffsetY }}px;"
+  [ngStyle]="styleMap"
 >
   <img src="../../assets/images/{{ this.agent.name }}.png" />
 </div>

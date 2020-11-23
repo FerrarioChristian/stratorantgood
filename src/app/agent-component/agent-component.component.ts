@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { AgentService } from '../store/agents/agent.service';
 import { selectors as agentsSelectors } from '../store/agents';
-import { Agent, AgentSetting } from '../store/agents/agent.model';
+import { selectors as settingsSelectors } from '../store/settings';
+import { AgentSetting } from '../store/agents/agent.model';
 import { select, Store } from '@ngrx/store';
+import { Coordinates } from '../store/settings/settings.model';
 
 @Component({
   selector: 'app-agent-component',
@@ -15,7 +17,6 @@ export class AgentComponentComponent implements OnInit {
   @Input() isOffense: boolean = false;
   @Input() index;
 
-  pos1 = 0; pos2 = 0; pos3 = 0; pos4 = 0;
   isMovable: boolean = false;
   target;
   headerOffset = 50;
@@ -33,23 +34,39 @@ export class AgentComponentComponent implements OnInit {
 
   @HostListener('document:mouseup', ['$event']) 
   function () {
+    if(this.isMovable) {
+      const agentCoordinates: Coordinates = {
+        X: this.agentPositionOffsetX,
+        Y: this.agentPositionOffsetY,
+      }
+      this.agentService.setAgentPosition(this.agent, agentCoordinates)
+    }
     this.isMovable = false;
   }
 
-  
   styleMap = {}
 
-  constructor(private store: Store) { 
+  constructor(private store: Store, private agentService: AgentService) { 
   }
   
   ngOnInit() {
-
-    this.store.pipe(select(state => agentsSelectors.getAgentSettingsBySideAndIndex(state, this.isOffense, this.index)))
+    this.store.pipe(select(state => settingsSelectors.getAgentSettingsBySideAndIndex(state, this.isOffense, this.index)))
     .subscribe(el => {
       this.agent = el;
+      this.updatePosition();
     });
+    
+    this.updatePosition();
+  }
+
+  updatePosition() {
     this.startingPositionOffsetY = this.agent.offsetY || this.index * 50 + this.headerOffset;
     this.startingPositionOffsetX = this.agent.offsetX || 0;
+
+    this.styleMap = {
+      top: this.startingPositionOffsetY + "px",
+      left: this.isOffense && !this.startingPositionOffsetX ? window.innerWidth - 60 + "px" : this.startingPositionOffsetX + "px"
+  }
   }
   
   dragStart(e) {
@@ -60,10 +77,10 @@ export class AgentComponentComponent implements OnInit {
 
   dragHandler(e) {
     e.preventDefault();
-    this.agentPositionOffsetY = e.clientY - 35 - this.headerOffset + "px";
-    this.agentPositionOffsetX = e.clientX - 26 + "px";
-    this.target.style.top = this.agentPositionOffsetY
-    this.target.style.left = this.agentPositionOffsetX;
+    this.agentPositionOffsetY = e.clientY - 35 - this.headerOffset;
+    this.agentPositionOffsetX = e.clientX - 26;
+    this.target.style.top = this.agentPositionOffsetY + "px"
+    this.target.style.left = this.agentPositionOffsetX + "px";
   }
 
 }

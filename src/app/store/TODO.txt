@@ -1,0 +1,2 @@
+Reset button restores initial position of ALL agents on the selected map
+Double click on one agent resets it's position to default for current map

@@ -17,11 +17,6 @@ export function agentsReducer(state = initialState, action) {
         ...state,
         agentsList: action.payload
       }
-    case types.RESET_AGENTS_SETTINGS: 
-      return {
-        ...state,
-        agentsSettings: action.payload
-      }
     default: return state
   }
 }

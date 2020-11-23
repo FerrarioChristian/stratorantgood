@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { Settings } from '../store/settings/settings.model';
 
 import { selectors as settingsSelectors } from '../store/settings';
+import { SettingsService } from '../store/settings/settings.service';
 
 @Component({
   selector: 'app-map-component',
@@ -12,13 +12,17 @@ import { selectors as settingsSelectors } from '../store/settings';
 export class MapComponentComponent implements OnInit {
   selectedMap: string;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private settingsService: SettingsService) {
     this.store.pipe(select(state => settingsSelectors.getSelectedMap(state)))
       .subscribe(el => this.selectedMap = el);
    }
 
   ngOnInit(): void {
 
+  }
+
+  resetAllAgents() {
+    this.settingsService.resetAllAgentPosition();
   }
 
 }
