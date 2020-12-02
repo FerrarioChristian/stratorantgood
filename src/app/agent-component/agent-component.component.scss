@@ -24,6 +24,10 @@
     box-shadow: red 0px 0px 10px;
   }
 
+  &--defense {
+    box-shadow: rgb(0, 183, 255) 0px 0px 10px;
+  }
+
   &--breach {
     background: $breach-color;
   }
